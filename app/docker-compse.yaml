@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    command : npm run start
+    ports :
+     - "3000:3000"
+    depends_on:
+     - postgres
+     environment:
+     DATABASE_URL: postgres://dbsuer:dbpass@postgres/demodb
+  postgres:
+   image: postgres:16
+   environment:
+   POSTGRES_USER: dbuser
+   POSTGRES_PASSWORD: dbpass
+   POSTGRES_DB: demodb
